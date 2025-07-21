@@ -9,7 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
- 
+    <!-- Chosen Palette: Slate & Amber -->
+    <!-- Application Structure Plan: A single-page application with a fixed sidebar for smooth-scroll navigation. The structure is designed to guide recruiters through a narrative: from a high-level summary and skills dashboard, through a detailed project showcase, to experience and awards. This is more engaging than a linear document, allowing non-linear exploration of the candidate's key strengths (Projects & Skills) first. Interactive elements like skill-based project filtering are included to demonstrate the connection between abilities and application. -->
+    <!-- Visualization & Content Choices: The resume's sections are transformed into distinct, interactive modules. Skills are presented as a dashboard with a Chart.js doughnut chart to visually quantify skill categories, making the profile immediately scannable. Projects are interactive cards that reveal details on click, preventing information overload. Experience is a vertical timeline for clear, chronological storytelling. The primary goal is to turn the static resume into an engaging, explorable profile that highlights technical depth and impact. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -28,10 +31,10 @@
             color: #f59e0b; /* amber-500 */
             font-weight: 600;
         }
-        .project-card {
+        .project-entry {
             transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
         }
-        .project-card:hover {
+        .project-entry:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
@@ -235,52 +238,66 @@
             </section>
 
             <section id="projects" class="py-20 fade-in-section">
-                <h2 class="text-4xl font-bold text-slate-900 mb-2">Projects Showcase</h2>
-                <p class="text-lg text-slate-600 mb-12">A selection of projects demonstrating my ability to build robust, scalable, and intelligent systems. Click any card to expand.</p>
-                <div id="project-list" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold text-slate-900 mb-2">Featured Engineering Projects</h2>
+                    <p class="text-lg text-slate-600 mb-12 max-w-3xl mx-auto">From low-level networking to scalable AI systems, these projects showcase my passion for building robust and intelligent software.</p>
+                </div>
+                <div id="project-list" class="space-y-16">
                     
-                    <div class="project-card bg-white rounded-xl shadow-sm overflow-hidden flex flex-col" data-tech="C++,TCP/IP,Concurrency,System Design">
-                        <div class="p-6 flex-grow">
-                            <h3 class="font-bold text-xl text-slate-800">Concurrent TCP Server</h3>
-                            <p class="text-slate-600 mt-2 h-12">Engineered a high-performance TCP server from scratch capable of handling 1,000+ concurrent clients.</p>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs font-semibold">C++</span>
-                                <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs font-semibold">TCP/IP</span>
-                                <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs font-semibold">Linux</span>
-                            </div>
+                    <div class="project-entry bg-white rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row items-center" data-tech="C++,TCP/IP,Concurrency,System Design">
+                        <div class="bg-amber-100 w-full md:w-1/3 h-48 md:h-auto flex items-center justify-center">
+                            <span class="text-7xl text-amber-500">🔗</span>
                         </div>
-                        <div class="p-4 bg-slate-50 border-t border-slate-200">
-                             <button class="ai-breakdown-btn w-full text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors">✨ AI Project Breakdown</button>
+                        <div class="p-8 md:w-2/3">
+                            <h3 class="font-bold text-2xl text-slate-800">Concurrent TCP Server</h3>
+                            <p class="text-slate-600 mt-3">Engineered a high-performance TCP server from scratch in C++, capable of handling over 1,000 concurrent clients with a non-blocking I/O model using `epoll`.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">C++</span>
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">TCP/IP</span>
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">System Design</span>
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">Linux</span>
+                            </div>
+                            <div class="mt-6">
+                                <button class="ai-breakdown-btn text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors">✨ AI Project Breakdown</button>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="project-card bg-white rounded-xl shadow-sm overflow-hidden flex flex-col" data-tech="Python,Redis,Distributed Systems,Microservices">
-                         <div class="p-6 flex-grow">
-                            <h3 class="font-bold text-xl text-slate-800">Distributed Task Queue</h3>
-                            <p class="text-slate-600 mt-2 h-12">Architected a scalable, fault-tolerant task queue system inspired by Celery, processing 10,000+ tasks/hour.</p>
-                             <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs font-semibold">Python</span>
-                                <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs font-semibold">Redis</span>
-                                <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs font-semibold">Distributed Systems</span>
-                            </div>
+                    <div class="project-entry bg-white rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row-reverse items-center" data-tech="Python,Redis,Distributed Systems,Microservices">
+                         <div class="bg-amber-100 w-full md:w-1/3 h-48 md:h-auto flex items-center justify-center">
+                            <span class="text-7xl text-amber-500">🚀</span>
                         </div>
-                        <div class="p-4 bg-slate-50 border-t border-slate-200">
-                            <button class="ai-breakdown-btn w-full text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors">✨ AI Project Breakdown</button>
+                        <div class="p-8 md:w-2/3">
+                            <h3 class="font-bold text-2xl text-slate-800">Distributed Task Queue</h3>
+                            <p class="text-slate-600 mt-3">Architected a scalable, fault-tolerant task queue system inspired by Celery, using Python and Redis to process over 10,000 tasks per hour in stress tests.</p>
+                             <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">Python</span>
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">Redis</span>
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">Distributed Systems</span>
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">Microservices</span>
+                            </div>
+                            <div class="mt-6">
+                                <button class="ai-breakdown-btn text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors">✨ AI Project Breakdown</button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="project-card bg-white rounded-xl shadow-sm overflow-hidden flex flex-col" data-tech="Python,Pinecone,Generative AI,RAG,LLMs,Flask,LangChain">
-                         <div class="p-6 flex-grow">
-                            <h3 class="font-bold text-xl text-slate-800">Optimized RAG Chatbot</h3>
-                            <p class="text-slate-600 mt-2 h-12">Developed a highly accurate RAG system with a custom data pipeline and advanced vector search.</p>
-                             <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs font-semibold">Python</span>
-                                <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs font-semibold">AI/ML</span>
-                                <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs font-semibold">Vector DB</span>
-                            </div>
+                    <div class="project-entry bg-white rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row items-center" data-tech="Python,Pinecone,Generative AI,RAG,LLMs,Flask,LangChain">
+                         <div class="bg-amber-100 w-full md:w-1/3 h-48 md:h-auto flex items-center justify-center">
+                            <span class="text-7xl text-amber-500">🧠</span>
                         </div>
-                        <div class="p-4 bg-slate-50 border-t border-slate-200">
-                            <button class="ai-breakdown-btn w-full text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors">✨ AI Project Breakdown</button>
+                        <div class="p-8 md:w-2/3">
+                            <h3 class="font-bold text-2xl text-slate-800">Optimized RAG Chatbot</h3>
+                            <p class="text-slate-600 mt-3">Developed a highly accurate Retrieval-Augmented Generation system with a custom data pipeline and advanced vector search, improving relevance by 35%.</p>
+                             <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">Python</span>
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">Generative AI</span>
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">RAG</span>
+                                <span class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs font-semibold">Vector DB</span>
+                            </div>
+                            <div class="mt-6">
+                                <button class="ai-breakdown-btn text-sm font-semibold text-amber-600 hover:text-amber-700 transition-colors">✨ AI Project Breakdown</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -394,7 +411,7 @@
             window.addEventListener('scroll', changeNav);
 
             const skillTags = document.querySelectorAll('.skill-tag');
-            const projects = document.querySelectorAll('.project-card');
+            const projects = document.querySelectorAll('.project-entry');
             let activeSkill = null;
 
             skillTags.forEach(tag => {
@@ -520,7 +537,7 @@
 
             function formatAIResponse(text) {
                 let html = text
-                    .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>')
+                    .replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>') 
                     .replace(/\n\n/g, '<br><br>')
                     .replace(/\n/g, '<br>')
                     .replace(/<br>\s*-\s*(.*?)(?=<br>|$)/g, '<ul><li>$1</li></ul>')
@@ -551,7 +568,7 @@
 
             document.querySelectorAll('.ai-breakdown-btn').forEach(button => {
                 button.addEventListener('click', async (e) => {
-                    const projectCard = e.target.closest('.project-card');
+                    const projectCard = e.target.closest('.project-entry');
                     const title = projectCard.querySelector('h3').innerText;
                     const description = projectCard.querySelector('p').innerText;
                     
@@ -584,7 +601,7 @@
                 careerResultDiv.classList.remove('hidden');
 
                 const skills = Array.from(document.querySelectorAll('.skill-tag')).map(t => t.innerText).join(', ');
-                const projects = Array.from(document.querySelectorAll('.project-card h3')).map(p => p.innerText).join(', ');
+                const projects = Array.from(document.querySelectorAll('.project-entry h3')).map(p => p.innerText).join(', ');
                 const journey = Array.from(document.querySelectorAll('#about h3')).map(j => j.innerText).join('; ');
 
                 const prompt = `Act as a top-tier FAANG career coach. Based on the following profile of a computer science student, provide a concise career path analysis.
